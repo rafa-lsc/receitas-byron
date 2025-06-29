@@ -1,4 +1,5 @@
 import InfoPill from "@/components/InfoPill";
+import PreparationStep from "@/components/PreparationStep";
 import { recipes } from "@/lib/data";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
@@ -60,14 +61,18 @@ export default function ReceitaPage({ params }: RecipePageProps) {
                                 <h2 className="text-xl font-bold mb-4">Ingredientes</h2>
                                 <ul className="list-disc list-inside space-y-2">
                                     {recipe.ingredients.map((ingredient) => (
-                                        <li className="marker:text-blue-500">{ingredient}</li>
+                                        <li  key={ingredient} className="marker:text-blue-500">{ingredient}</li>
                                     ))}
                                 </ul>
                             </div>
                             {/* coluna do modo de preparo */}
                             <div>
                                 <h2 className="text-xl font-bold mb-4">Modo de Preparo</h2>
-                                {/* TODO: componente de passo de preparo */}
+                                <ol className="space-y-3">
+                                    {recipe.instructions.map((instruction, index) => (
+                                        <PreparationStep key={instruction} index={index + 1} description={instruction} />
+                                    ))}
+                                </ol>
                             </div>
                         </div>
 
