@@ -22,7 +22,7 @@ export default function Home() {
         <div className="flex flex-col items-center container mx-auto">
           <h2 className="text-lg font-bold">Receitas em destaque</h2>
 
-          {/* cards de receita */}
+          {/* TODO: cards de receita */}
 
           <Link className="flex text-blue-400 hover:text-blue-700 transition-colors" href="/receitas">
             Ver todas as receitas
