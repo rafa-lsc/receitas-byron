@@ -7,11 +7,11 @@ export default function Header() {
         <Link className="text-xl font-bold hover:scale-105 transition-all" href="/">Receitas deliciosas</Link>
 
         <nav className="flex gap-6">
-          <Link className="hover:text-orange-500 transition-colors" href="/">
+          <Link className="hover:text-blue-500 transition-colors" href="/">
             Início
           </Link>
 
-          <Link className="hover:text-orange-500 transition-colors" href="/receitas">
+          <Link className="hover:text-blue-500 transition-colors" href="/receitas">
             Receitas
           </Link>
         </nav>
