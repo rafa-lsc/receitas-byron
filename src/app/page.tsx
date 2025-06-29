@@ -1,8 +1,8 @@
 
 export default function Home() {
   return (
-    <div>
-      <h1>tela Inicial</h1>
-    </div>
+    <main className="flex-grow">
+      <h1>Tela Inicial</h1>
+    </main>
   );
 }
