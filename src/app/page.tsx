@@ -18,14 +18,14 @@ export default function Home() {
       </section>
 
       {/* seção receitas em destaque */}
-      <section>
-        <div className="container mx-auto">
-          <h2>Receitas em destaque</h2>
+      <section className="py-12">
+        <div className="flex flex-col items-center container mx-auto">
+          <h2 className="text-lg font-bold">Receitas em destaque</h2>
 
           {/* cards de receita */}
 
-          <Link href="/receitas">
-            Ver todas as receitas 
+          <Link className="flex text-blue-400 hover:text-blue-700 transition-colors" href="/receitas">
+            Ver todas as receitas
             <ChevronRight />
           </Link>
 
