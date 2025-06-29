@@ -1,31 +1,48 @@
+import { recipes } from "@/lib/data";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-export default function ReceitaPage () {
+interface RecipePageProps {
+    params: {
+        id: string;
+    }
+}
+
+export default function ReceitaPage({ params }: RecipePageProps) {
+    const recipe = recipes.find((recipe) => recipe.id === params.id)
+
+    if (!recipe) {
+        return notFound()
+    }
+
     return (
         <main className="flex-grow py-8">
             <div className="container mx-auto">
-                <Link className="flex text-blue-500 hover:text-blue-700" href="receitas">
-                    <ChevronLeft/>
+                <Link className="flex text-blue-500 hover:text-blue-700 mb-6" href="/receitas">
+                    <ChevronLeft />
                     Voltar para receitas
                 </Link>
 
-                <section>
+                <section className="rounded-lg overflow-hidden shadow-md">
                     {/* Imagem de Capa da receita */}
                     <div className="relative h-96 w-full">
-                        <Image 
-                        src=""
-                        fill
-                        alt="Titulo da Receita"
-
+                        <Image
+                            src={recipe.image}
+                            fill
+                            alt="Titulo da Receita"
+                            className="object-cover"
                         />
                     </div>
 
                     {/* Descriçao da receita */}
-                    <div>
-                        <h1>Titulo da receita</h1>
-                        <p>Descrição</p>
+                    <div className="flex flex-col gap-6 p-6">
+                        {/* Titulo de descrição*/}
+                        <div>
+                            <h1 className="text-3xl font-bold">{recipe.title}</h1>
+                            <p>{recipe.description}</p>
+                        </div>
 
                         {/* Infos de Preparo*/}
                         <div>
@@ -33,14 +50,20 @@ export default function ReceitaPage () {
                         </div>
 
                         {/* Colunas */}
-                        <div>
+                        <div className="grid grid-cols-2">
                             {/* coluna dos ingredientes */}
                             <div>
-
+                                <h2 className="text-xl font-bold mb-4">Ingredientes</h2>
+                                <ul className="list-disc list-inside space-y-2">
+                                    {recipe.ingredients.map((ingredient) => (
+                                        <li className="marker:text-blue-500">{ingredient}</li>
+                                    ))}
+                                </ul>
                             </div>
-                            {/* coluna do preparo */}
+                            {/* coluna do modo de preparo */}
                             <div>
-                               {/* TODO: componente de passo de preparo */} 
+                                <h2 className="text-xl font-bold mb-4">Modo de Preparo</h2>
+                                {/* TODO: componente de passo de preparo */}
                             </div>
                         </div>
 
