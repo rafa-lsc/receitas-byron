@@ -1,6 +1,7 @@
 ## Sobre
 
-Primeiro projeto usando Next.js, desenvolvido durante as aulas de web que fazem parte do trainee da empresa júnior byron.solutions
+Site de receitas feito para o primeiro projeto usando Next.js;
+Desenvolvido durante as aulas de web que fazem parte do trainee da empresa júnior byron.solutions
 
 ## Preview
 
