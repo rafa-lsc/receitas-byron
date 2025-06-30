@@ -47,7 +47,7 @@ export default function ReceitaPage({ params }: RecipePageProps) {
                         </div>
 
                         {/* Infos de Preparo*/}
-                        <div className="flex gap-4">
+                        <div className="flex gap-4 ">
                            <InfoPill title="Preparo" info={recipe.prepTime}/>
                            <InfoPill title="Cozimento" info={recipe.cookTime}/>
                            <InfoPill title="Porções" info={recipe.servings}/>
