@@ -5,7 +5,7 @@ Desenvolvido durante as aulas de web que fazem parte do trainee da empresa júni
 
 ## Preview
 
-![Preview da Home Page](public/preview/preview.png)
+![Preview da Home Page](public/preview/preview-2.png)
 
 ## Estrutura
 

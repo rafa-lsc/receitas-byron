@@ -20,7 +20,7 @@ export default function RecipeCard({recipe}: RecipeCardProps){
 
                 <div className="flex flex-col p-4 gap-2">
                     <h3 className="text-lg font-bold">{recipe.title}</h3>
-                    <p>{recipe.title}</p>
+                    <p>{recipe.description}</p>
                 </div>
             </div>
         </Link>
