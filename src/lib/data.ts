@@ -43,7 +43,7 @@ export const recipes: Recipe[] = [
   {
     id: "2",
     title: "Carbonara",
-    description: "Um clássico da culinária romana, este Carbonara é cremoso, saboroso e feito com poucos ingredientes, mas de alta qualidade.",
+    description: "Um clássico da culinária romana, é cremoso, saboroso e feito com poucos ingredientes.",
     image: "/receitas/carbonara.jpeg",
     prepTime: "15 minutos",
     cookTime: "20 minutos",
