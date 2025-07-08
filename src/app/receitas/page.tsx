@@ -27,7 +27,7 @@ export default function ReceitasPage() {
 
           <button
             onClick={() => setIsRecipeModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg text-white bg-black hover:bg-gray-800 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-white bg-black hover:bg-gray-900 transition-colors cursor-pointer"
           >
             <Plus size={16} />
             Nova receita

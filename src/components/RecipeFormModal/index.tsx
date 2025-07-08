@@ -229,7 +229,7 @@ export default function RecipeFormModal({
                   {ingredientFields.length > 1 && (
                     <button
                       type="button"
-                      className="bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors px-4 py-2 font-medium"
+                      className="bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors px-4 py-2 font-medium cursor-pointer"
                       onClick={() => removeIngredidents(index)}
                     >
                       Remover
@@ -240,7 +240,7 @@ export default function RecipeFormModal({
 
               <button
                 type="button"
-                className="bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors px-4 py-2 font-medium w-fit"
+                className="bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors px-4 py-2 font-medium w-fit cursor-pointer"
                 onClick={() => appendIngredients({ value: "" })}
               >
                 Adicionar ingrediente
@@ -272,7 +272,7 @@ export default function RecipeFormModal({
                   {instructionFields.length > 1 && (
                     <button
                       type="button"
-                      className="bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors px-4 py-2 font-medium h-fit"
+                      className="bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors px-4 py-2 font-medium h-fit cursor-pointer"
                       onClick={() => removeInstructions(index)}
                     >
                       Remover
@@ -283,7 +283,7 @@ export default function RecipeFormModal({
 
               <button
                 type="button"
-                className="bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors px-4 py-2 font-medium w-fit"
+                className="bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors px-4 py-2 font-medium w-fit cursor-pointer"
                 onClick={() => appendInstructions({ value: "" })}
               >
                 Adicionar instrução
@@ -295,13 +295,13 @@ export default function RecipeFormModal({
             <button
               type="button"
               onClick={onClose}
-              className="bg-white border border-zinc-300 rounded-md hover:bg-gray-100 transition-colors px-4 py-2 font-medium"
+              className="bg-white border border-zinc-300 rounded-md hover:bg-gray-100 transition-colors px-4 py-2 font-medium cursor-pointer"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="bg-black rounded-md text-white hover:bg-gray-800 transition-colors px-4 py-2 font-medium"
+              className="bg-black rounded-md text-white hover:bg-gray-800 transition-colors px-4 py-2 font-medium cursor-pointer"
             >
               Criar receita
             </button>
