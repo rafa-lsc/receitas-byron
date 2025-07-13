@@ -7,11 +7,14 @@ import {
 } from "@/lib/formValidationSchemas/recipeSchema";
 import { Span } from "next/dist/trace";
 import { Recipe } from "@/lib/data";
+import { useEffect } from "react";
 
 interface RecipeFormModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (recipe: Omit<Recipe, "id">) => void;
+  onSave: (recipe: Omit<Recipe, "id"> | Recipe) => void;
+  mode: "create" | "edit",
+  recipe?: Recipe
 }
 
 const DEFAULT_VALUES: RecipeFormData = {
@@ -30,6 +33,8 @@ export default function RecipeFormModal({
   isOpen,
   onClose,
   onSave,
+  mode,
+  recipe
 }: RecipeFormModalProps) {
   const {
     register,
@@ -61,6 +66,20 @@ export default function RecipeFormModal({
     name: "instructions",
   });
 
+  useEffect(() => {
+    if(isOpen){
+      if(mode === "edit" && recipe){
+        reset({
+          ...recipe,
+          ingredients:recipe.ingredients.map((ing) => ({value: ing})),
+          instructions:recipe.ingredients.map((inst) => ({value: inst}))
+        })
+      } else {
+        reset(DEFAULT_VALUES)
+      }
+    }
+  }, [mode, isOpen, recipe, reset])
+
   const onSubmit = (data: RecipeFormData) => {
     const recipedata = {
       ...data,
@@ -69,7 +88,7 @@ export default function RecipeFormModal({
     };
 
     console.log(recipedata);
-    onSave(recipedata);
+    onSave(mode === "edit" && recipe ? {...recipedata, id: recipe.id} : recipedata);
     reset();
     onClose();
   };
@@ -80,7 +99,7 @@ export default function RecipeFormModal({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="bg-white min-w-2xl max-h-[90dvh] overflow-y-scroll">
         <DialogHeader>
-          <DialogTitle>Nova receita</DialogTitle>
+          <DialogTitle>{mode === "create" ? "Nova receita" : "Editar Receita"}</DialogTitle>
         </DialogHeader>
 
         <form
@@ -303,7 +322,7 @@ export default function RecipeFormModal({
               type="submit"
               className="bg-black rounded-md text-white hover:bg-gray-800 transition-colors px-4 py-2 font-medium cursor-pointer"
             >
-              Criar receita
+              {mode === "create" ? "Criar receita" : "Salvar alterações"}
             </button>
           </div>
         </form>

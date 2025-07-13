@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { recipes } from "../lib/data";
@@ -29,7 +31,9 @@ export default function Home() {
 
           <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 lg:py-6">
             {featuredRecipes.map((recipe) => (
-              <RecipeCard key={recipe.id} recipe={recipe}/>
+              <RecipeCard key={recipe.id} recipe={recipe} onEdit={function (): void {
+                throw new Error("Function not implemented.");
+              } }/>
             ))}
           </div>
 
