@@ -47,13 +47,12 @@ export default function ReceitasPage() {
     setIsRecipeModalOpen(false);
   };
 
-  const handleSaveRecipe = (recipedata: Omit<Recipe, "id"> | Recipe) => {
-    if (modalMode === "create") {
-      const newRecipe: Recipe = {
-        ...recipedata,
-        id: (recipes.length + 1).toString(),
-      };
-      setRecipes((prev) => [...prev, newRecipe]);
+  const handleSaveRecipe =  async (recipedata: Omit<Recipe, "id"> | Recipe) => {
+    try {
+      if (modalMode === "create") {
+        const response = await api.post("/recipes", recipedata)
+        const newRecipe = response.data;
+        setRecipes((prev) => [...prev, newRecipe])
     } else {
       // modo "edit"
       const updatedRecipe = recipedata as Recipe;
@@ -64,6 +63,9 @@ export default function ReceitasPage() {
       );
     }
     handleCloseModal();
+    } catch (error) {
+      
+    }
   };
 
   const handleOpenDeleteConfirmationModal = (recipe: Recipe) => {
