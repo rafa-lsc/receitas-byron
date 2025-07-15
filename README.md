@@ -1,15 +1,17 @@
 ## Sobre
 
-Site de receitas feito para o primeiro projeto usando Next.js;
-Desenvolvido durante as aulas de web que fazem parte do trainee da empresa júnior byron.solutions
+Esse projeto é um site de gerenciamento e visualização de receitas, desenvolvido durante as aulas de Next.Js que fazem parte do trainee da empresa júnior byron.solutions
 
 ## Preview
 
-![Preview da Home Page](public/preview/preview-2.png)
+![Preview da Home Page](public/preview/preview-n3.png)
 
-## Estrutura
-
-Na primeira versão, o site tem uma home page que mostra os cards das receitas em destaque, que redirecionam o usuário para as instruções e informações dela. Também existe uma página com os cards de todas as receitas.
+## Estrutura / Funcionalidades
+- Uma página de boas-vindas que destaca algumas receitas populares e convida o usuário a explorar todas as opções 
+- Uma seção dedicada onde todas as receitas cadastradas são exibidas em um formato de grade
+- Ao clicar em uma receita, o usuário pode visualizar informações detalhadas como título, categoria, ingredientes e instruções de preparo
+- O usuário pode cadastar, editar e excluir receitas
+- A API utilizada para esse projeto está disponìvel em https://github.com/talles-morais/receitas-byron-backend
 
 ## Como executar
 

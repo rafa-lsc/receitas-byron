@@ -71,8 +71,8 @@ export default function RecipeFormModal({
       if(mode === "edit" && recipe){
         reset({
           ...recipe,
-          ingredients:recipe.ingredients.map((ing) => ({value: ing})),
-          instructions:recipe.ingredients.map((inst) => ({value: inst}))
+          ingredients:recipe.ingredients.map((ing) => ({value: ing.value})),
+          instructions:recipe.ingredients.map((inst) => ({value: inst.value}))
         })
       } else {
         reset(DEFAULT_VALUES)
@@ -81,14 +81,8 @@ export default function RecipeFormModal({
   }, [mode, isOpen, recipe, reset])
 
   const onSubmit = (data: RecipeFormData) => {
-    const recipedata = {
-      ...data,
-      ingredients: data.ingredients.map((ingredient) => ingredient.value),
-      instructions: data.instructions.map((instruction) => instruction.value),
-    };
 
-    console.log(recipedata);
-    onSave(mode === "edit" && recipe ? {...recipedata, id: recipe.id} : recipedata);
+    onSave(mode === "edit" && recipe ? {...data, id: recipe.id} : data);
     reset();
     onClose();
   };
