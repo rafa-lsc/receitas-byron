@@ -10,7 +10,8 @@ import api from "@/lib/api";
 
 export default function ReceitasPage() {
   const [isRecipeModalOpen, setIsRecipeModalOpen] = useState(false);
-  const [isDeleteConfirmationModalOpen, setIsDeleteConfirmationModalOpen] = useState(false)
+  const [isDeleteConfirmationModalOpen, setIsDeleteConfirmationModalOpen] =
+    useState(false);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [modalMode, setModalMode] = useState<"create" | "edit">("create");
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | undefined>(
@@ -47,42 +48,56 @@ export default function ReceitasPage() {
     setIsRecipeModalOpen(false);
   };
 
-  const handleSaveRecipe =  async (recipedata: Omit<Recipe, "id"> | Recipe) => {
+  const handleSaveRecipe = async (recipedata: Omit<Recipe, "id"> | Recipe) => {
     try {
       if (modalMode === "create") {
-        const response = await api.post("/recipes", recipedata)
+        const response = await api.post("/recipes", recipedata);
         const newRecipe = response.data;
-        setRecipes((prev) => [...prev, newRecipe])
-    } else {
-      // modo "edit"
-      const updatedRecipe = recipedata as Recipe;
+        setRecipes((prev) => [...prev, newRecipe]);
+      } else {
+        // modo "edit"
+        const updatedRecipe = recipedata as Recipe;
 
-      const response = await api.put(`/recipes/${updatedRecipe.id}`, updatedRecipe)
-      setRecipes((prev) =>
-        prev.map((recipe) =>
-          recipe.id === updatedRecipe.id ? response.data : recipe
-        )
-      );
-    }
-    handleCloseModal();
+        const response = await api.put(
+          `/recipes/${updatedRecipe.id}`,
+          updatedRecipe
+        );
+        setRecipes((prev) =>
+          prev.map((recipe) =>
+            recipe.id === updatedRecipe.id ? response.data : recipe
+          )
+        );
+      }
+      handleCloseModal();
     } catch (error) {
-      console.error(`Erro ao ${modalMode === "create" ? "criar": "editar"} a receita`, error)
+      console.error(
+        `Erro ao ${modalMode === "create" ? "criar" : "editar"} a receita`,
+        error
+      );
     }
   };
 
   const handleOpenDeleteConfirmationModal = (recipe: Recipe) => {
     setSelectedRecipe(recipe);
-    setIsDeleteConfirmationModalOpen(true)
-  }
+    setIsDeleteConfirmationModalOpen(true);
+  };
 
-  const handleDeleteRecipe = () => {
-    if(selectedRecipe){
-      setRecipes((prev) => prev.filter((recipe) => recipe.id !== selectedRecipe.id))
+  const handleDeleteRecipe = async () => {
+    try {
+      if (selectedRecipe) {
+        await api.delete(`/recipes/${selectedRecipe.id}`)
 
-      setIsDeleteConfirmationModalOpen(false)
-      setSelectedRecipe(undefined)
+        setRecipes((prev) =>
+          prev.filter((recipe) => recipe.id !== selectedRecipe.id)
+        );
+
+        setIsDeleteConfirmationModalOpen(false);
+        setSelectedRecipe(undefined);
+      }
+    } catch (error) {
+      console.error("Erro ao deletar receita", error)
     }
-  }
+  };
 
   return (
     <main className="flex-grow py-8">
@@ -120,10 +135,10 @@ export default function ReceitasPage() {
       />
 
       <DeleteConfirmationModal
-      isOpen={isDeleteConfirmationModalOpen}
-      onClose={() => setIsDeleteConfirmationModalOpen(false)}
-      onConfirm={handleDeleteRecipe}
-      recipe={selectedRecipe}
+        isOpen={isDeleteConfirmationModalOpen}
+        onClose={() => setIsDeleteConfirmationModalOpen(false)}
+        onConfirm={handleDeleteRecipe}
+        recipe={selectedRecipe}
       />
     </main>
   );
